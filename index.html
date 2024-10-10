@@ -6,128 +6,97 @@
     <title>Практики Дыхания</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        select { margin: 20px; padding: 10px; font-size: 16px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            color: white; /* Белый цвет текста */
+        }
+        button { 
+            margin: 10px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #description {
+            margin: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
     <h1>Выберите практику дыхания</h1>
-    <select id="practiceSelect">
-        <option value="4-7-8">4-7-8</option>
-        <option value="Box Breathing">Коробочное дыхание</option>
-        <option value="Alternate Nostril">Альтернативное ноздревое дыхание</option>
-        <option value="Kapalabhati">Капалабхати</option>
-        <option value="Bhramari">Бхрамари</option>
-        <option value="Ujjayi">Уджайи</option>
-        <option value="Diaphragmatic">Диафрагмальное дыхание</option>
-        <option value="Buteyko">Бутико</option>
-        <option value="Wim Hof">Вим Хоф</option>
-        <option value="Resonant">Резонансное дыхание</option>
-        <option value="Coherent Breathing">Когерентное дыхание</option>
-        <option value="Pursed Lip Breathing">Дыхание с поджатыми губами</option>
-        <option value="Deep Breathing">Глубокое дыхание</option>
-        <option value="Lion's Breath">Дыхание льва</option>
-        <option value="Sitali">Ситали</option>
-        <option value="Sama Vritti">Сама Вритти</option>
-    </select>
-
+    <div id="buttonsContainer"></div>
+    <div id="description"></div>
     <div id="canvasContainer"></div>
 
     <script>
         const practices = {
-            "4-7-8": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Задержка', duration: 7, startIntensity: 1, endIntensity: 1 },
-                { name: 'Выдох', duration: 8, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Box Breathing": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Задержка', duration: 4, startIntensity: 1, endIntensity: 1 },
-                { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 },
-                { name: 'Задержка', duration: 4, startIntensity: 0, endIntensity: 0 }
-            ],
-            "Alternate Nostril": [
-                { name: 'Вдох через левую', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох через правую', duration: 4, startIntensity: 1, endIntensity: 0 },
-                { name: 'Вдох через правую', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох через левую', duration: 4, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Kapalabhati": [
-                { name: 'Вдох', duration: 1, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 1, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Bhramari": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох с гудением', duration: 8, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Ujjayi": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Задержка', duration: 2, startIntensity: 1, endIntensity: 1 },
-                { name: 'Выдох', duration: 6, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Diaphragmatic": [
-                { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Buteyko": [
-                { name: 'Вдох', duration: 3, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 3, startIntensity: 1, endIntensity: 0 },
-                { name: 'Задержка', duration: 3, startIntensity: 0, endIntensity: 0 }
-            ],
-            "Wim Hof": [
-                { name: 'Вдох', duration: 2, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 2, startIntensity: 1, endIntensity: 0 },
-                { name: 'Задержка', duration: 15, startIntensity: 0, endIntensity: 0 }
-            ],
-            "Resonant": [
-                { name: 'Вдох', duration: 5.5, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 5.5, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Coherent Breathing": [
-                { name: 'Вдох', duration: 6, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 6, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Pursed Lip Breathing": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох через губы', duration: 6, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Deep Breathing": [
-                { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Lion's Breath": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох с рычанием', duration: 6, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Sitali": [
-                { name: 'Вдох через язык', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох через нос', duration: 4, startIntensity: 1, endIntensity: 0 }
-            ],
-            "Sama Vritti": [
-                { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
-                { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 }
-            ]
+            "4-7-8": {
+                description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Задержка', duration: 7, startIntensity: 1, endIntensity: 1 },
+                    { name: 'Выдох', duration: 8, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Box Breathing": {
+                description: "Вдох, задержка, выдох, задержка по 4 секунды.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Задержка', duration: 4, startIntensity: 1, endIntensity: 1 },
+                    { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 },
+                    { name: 'Задержка', duration: 4, startIntensity: 0, endIntensity: 0 }
+                ]
+            },
+            // Добавьте другие практики здесь...
         };
 
         let currentPractice = "4-7-8";
-        let phases = practices[currentPractice];
+        let phases = practices[currentPractice].phases;
         let totalDuration = phases.reduce((sum, phase) => sum + phase.duration, 0);
         let startTime;
+        let currentTextSize = 12; // Начальный размер текста
 
         function setup() {
-            let canvas = createCanvas(windowWidth, windowHeight / 2);
+            let canvas = createCanvas(windowWidth * 1.10, (windowHeight / 2) * 1.10);
             canvas.parent('canvasContainer');
             startTime = millis();
-            document.getElementById('practiceSelect').addEventListener('change', function() {
-                currentPractice = this.value;
-                phases = practices[currentPractice];
-                totalDuration = phases.reduce((sum, phase) => sum + phase.duration, 0);
-                startTime = millis();
-            });
+            createButtons();
+            updateDescription(currentPractice);
+        }
+
+        function createButtons() {
+            const buttonsContainer = document.getElementById('buttonsContainer');
+            for (let practice in practices) {
+                let button = document.createElement('button');
+                button.innerText = practice;
+                button.onclick = () => selectPractice(practice);
+                buttonsContainer.appendChild(button);
+            }
+        }
+
+        function selectPractice(practice) {
+            currentPractice = practice;
+            phases = practices[currentPractice].phases;
+            totalDuration = phases.reduce((sum, phase) => sum + phase.duration, 0);
+            startTime = millis();
+            updateDescription(practice);
+        }
+
+        function updateDescription(practice) {
+            const descriptionDiv = document.getElementById('description');
+            descriptionDiv.innerText = practices[practice].description;
         }
 
         function draw() {
-            background(255);
+            drawGradientBackground();
             let currentTime = (millis() - startTime) / 1000;
             let phaseTime = currentTime % totalDuration;
             let elapsed = 0;
@@ -144,25 +113,35 @@
                 elapsed += phase.duration;
             }
 
-            let radius = map(intensity, 0, 1, 30, 80);
+            let radius = map(intensity, 0, 1, 30, 100);
 
-            drawSmoothGradientCircle(width / 2, height / 2, radius);
+            draw3DCircle(width / 2, height / 2, radius);
 
-            textSize(16);
-            textStyle(BOLD);
-            fill(0);
+            let targetTextSize = map(radius, 30, 100, 12, 24);
+            currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
+            textSize(currentTextSize);
+            fill(255); // Белый цвет текста
             textAlign(CENTER, CENTER);
             text(currentPhase.name, width / 2, height / 2);
         }
 
-        function drawSmoothGradientCircle(x, y, radius) {
+        function drawGradientBackground() {
+            for (let y = 0; y < height; y++) {
+                let inter = map(y, 0, height, 0, 1);
+                let c = lerpColor(color(200, 230, 255), color(180, 255, 220), inter);
+                stroke(c);
+                line(0, y, width, y);
+            }
+        }
+
+        function draw3DCircle(x, y, radius) {
             noStroke();
             let startColor = color(173, 216, 230);
             let endColor = color(144, 238, 144);
 
-            for (let r = radius + 20; r > 0; r -= 0.5) {
-                let currentColor = lerpColor(startColor, endColor, r / (radius + 20));
-                let alpha = map(r, radius, radius + 20, 0, 255);
+            for (let r = radius + 30; r > 0; r -= 0.5) {
+                let currentColor = lerpColor(startColor, endColor, r / (radius + 30));
+                let alpha = map(r, radius, radius + 30, 0, 255);
                 fill(red(currentColor), green(currentColor), blue(currentColor), alpha);
                 ellipse(x, y, r * 2, r * 2);
             }
