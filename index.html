@@ -19,8 +19,8 @@
         }
         button { 
             margin: 5px; 
-            padding: 8px 16px; 
-            font-size: 14px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
             cursor: pointer;
             border: none;
             border-radius: 5px;
@@ -35,6 +35,18 @@
         }
         #buttonsContainer {
             margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+            #description {
+                font-size: 16px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -191,7 +203,7 @@
         let currentTextSize = 12; // Начальный размер текста
 
         function setup() {
-            let canvas = createCanvas(windowWidth * 1.10, (windowHeight / 2) * 1.10);
+            let canvas = createCanvas(windowWidth * 0.95, (windowHeight / 2) * 0.95);
             canvas.parent('canvasContainer');
             startTime = millis();
             createButtons();
@@ -246,7 +258,7 @@
             let targetTextSize = map(radius, 30, 100, 12, 24);
             currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
             textSize(currentTextSize);
-            fill(50); // Темно-серый цвет текста
+            fill(255); // Белый цвет текста
             textAlign(CENTER, CENTER);
             text(currentPhase.name, width / 2, height / 2);
         }
