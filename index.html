@@ -12,7 +12,10 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            color: white; /* Белый цвет текста */
+            color: white; /* Белый цвет текста для кнопок и круга */
+        }
+        h1, #description {
+            color: #333; /* Темно-серый цвет для заголовка и описания */
         }
         button { 
             margin: 10px; 
@@ -55,7 +58,109 @@
                     { name: 'Задержка', duration: 4, startIntensity: 0, endIntensity: 0 }
                 ]
             },
-            // Добавьте другие практики здесь...
+            "Alternate Nostril": {
+                description: "Вдох через левую ноздрю, выдох через правую, затем наоборот.",
+                phases: [
+                    { name: 'Вдох через левую', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох через правую', duration: 4, startIntensity: 1, endIntensity: 0 },
+                    { name: 'Вдох через правую', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох через левую', duration: 4, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Kapalabhati": {
+                description: "Быстрый вдох и выдох через нос, фокус на выдохе.",
+                phases: [
+                    { name: 'Вдох', duration: 1, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 1, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Bhramari": {
+                description: "Вдох, затем выдох с мягким гудящим звуком.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох с гудением', duration: 8, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Ujjayi": {
+                description: "Вдох и выдох через нос с легким шипящим звуком.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Задержка', duration: 2, startIntensity: 1, endIntensity: 1 },
+                    { name: 'Выдох', duration: 6, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Diaphragmatic": {
+                description: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот.",
+                phases: [
+                    { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Buteyko": {
+                description: "Вдох и выдох через нос, затем задержка дыхания.",
+                phases: [
+                    { name: 'Вдох', duration: 3, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 3, startIntensity: 1, endIntensity: 0 },
+                    { name: 'Задержка', duration: 3, startIntensity: 0, endIntensity: 0 }
+                ]
+            },
+            "Wim Hof": {
+                description: "Глубокий вдох и выдох, затем задержка дыхания.",
+                phases: [
+                    { name: 'Вдох', duration: 2, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 2, startIntensity: 1, endIntensity: 0 },
+                    { name: 'Задержка', duration: 15, startIntensity: 0, endIntensity: 0 }
+                ]
+            },
+            "Resonant": {
+                description: "Вдох и выдох на 5.5 секунд каждый.",
+                phases: [
+                    { name: 'Вдох', duration: 5.5, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 5.5, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Coherent Breathing": {
+                description: "Вдох и выдох на 6 секунд каждый.",
+                phases: [
+                    { name: 'Вдох', duration: 6, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 6, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Pursed Lip Breathing": {
+                description: "Вдох через нос, выдох через сжатые губы.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох через губы', duration: 6, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Deep Breathing": {
+                description: "Глубокий вдох через нос, задержка, медленный выдох.",
+                phases: [
+                    { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Lion's Breath": {
+                description: "Вдох через нос, выдох с открытым ртом и высунутым языком.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох с рычанием', duration: 6, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Sitali": {
+                description: "Вдох через свернутый язык, выдох через нос.",
+                phases: [
+                    { name: 'Вдох через язык', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох через нос', duration: 4, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Sama Vritti": {
+                description: "Вдох и выдох на равные промежутки времени.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 }
+                ]
+            }
         };
 
         let currentPractice = "4-7-8";
