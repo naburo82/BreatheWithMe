@@ -12,20 +12,22 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            color: white; /* Белый цвет текста для круга */
+            color: white; /* Белый цвет текста для заголовка и описания */
         }
         h1, #description {
             color: #333; /* Темно-серый цвет для заголовка и описания */
         }
         button { 
-            margin: 10px; 
-            padding: 10px 20px; 
-            font-size: 16px; 
+            margin: 5px; 
+            padding: 8px 16px; 
+            font-size: 14px; 
             cursor: pointer;
             border: none;
             border-radius: 5px;
             background-color: #4CAF50;
             color: white;
+            width: 90%; /* Ширина кнопок для мобильной версии */
+            max-width: 300px; /* Максимальная ширина кнопок */
         }
         #description {
             margin: 20px;
@@ -244,7 +246,7 @@
             let targetTextSize = map(radius, 30, 100, 12, 24);
             currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
             textSize(currentTextSize);
-            fill(255); // Белый цвет текста
+            fill(50); // Темно-серый цвет текста
             textAlign(CENTER, CENTER);
             text(currentPhase.name, width / 2, height / 2);
         }
