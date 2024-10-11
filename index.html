@@ -49,7 +49,62 @@
                 name: "Коробочное дыхание",
                 description: "Вдох, задержка, выдох, задержка по 4 секунды."
             },
-            // Добавьте другие практики здесь...
+            "Alternate Nostril": {
+                name: "Альтернативное ноздревое дыхание",
+                description: "Вдох через левую ноздрю, выдох через правую, затем наоборот."
+            },
+            "Kapalabhati": {
+                name: "Капалабхати",
+                description: "Быстрый вдох и выдох через нос, фокус на выдохе."
+            },
+            "Bhramari": {
+                name: "Бхрамари",
+                description: "Вдох, затем выдох с мягким гудящим звуком."
+            },
+            "Ujjayi": {
+                name: "Уджайи",
+                description: "Вдох и выдох через нос с легким шипящим звуком."
+            },
+            "Diaphragmatic": {
+                name: "Диафрагмальное дыхание",
+                description: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот."
+            },
+            "Buteyko": {
+                name: "Бутико",
+                description: "Вдох и выдох через нос, затем задержка дыхания."
+            },
+            "Wim Hof": {
+                name: "Вим Хоф",
+                description: "Глубокий вдох и выдох, затем задержка дыхания."
+            },
+            "Resonant": {
+                name: "Резонансное дыхание",
+                description: "Вдох и выдох на 5.5 секунд каждый."
+            },
+            "Coherent Breathing": {
+                name: "Когерентное дыхание",
+                description: "Вдох и выдох на 6 секунд каждый."
+            },
+            "Pursed Lip Breathing": {
+                name: "Дыхание с поджатыми губами",
+                description: "Вдох через нос, выдох через сжатые губы."
+            },
+            "Deep Breathing": {
+                name: "Глубокое дыхание",
+                description: "Глубокий вдох через нос, задержка, медленный выдох."
+            },
+            "Lion's Breath": {
+                name: "Дыхание льва",
+                description: "Вдох через нос, выдох с открытым ртом и высунутым языком."
+            },
+            "Sitali": {
+                name: "Ситали",
+                description: "Вдох через свернутый язык, выдох через нос."
+            },
+            "Sama Vritti": {
+                name: "Сама Вритти",
+                description: "Вдох и выдох на равные промежутки времени."
+            }
         };
 
         function createButtons() {
@@ -63,7 +118,7 @@
         }
 
         function selectPractice(practice) {
-            window.location.href = `https://naburo82.github.io/BreatheWithMe.io/visualization.html?practice=${encodeURIComponent(practice)}`;
+            window.location.href = `https://naburo82.github.io/BreatheWithMe.io/index.html?practice=${encodeURIComponent(practice)}`;
         }
 
         createButtons();
