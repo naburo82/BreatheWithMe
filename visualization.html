@@ -12,18 +12,32 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
             color: #444; /* Средне-серый цвет текста */
-            background-color: #f0f0f0; /* Светлый фон для контраста */
+            background-color: #e0f7fa; /* Приятный голубой фон */
         }
         #description {
             text-align: center;
             margin: 20px;
             font-size: 18px;
         }
+        #backButton {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div id="description"></div>
     <div id="canvasContainer"></div>
+    <button id="backButton" onclick="goBack()">Вернуться к выбору практик</button>
 
     <script>
         const practices = {
@@ -61,14 +75,14 @@
         let currentTextSize = 12;
 
         function setup() {
-            let canvas = createCanvas(windowWidth, windowHeight - 60); // Уменьшаем высоту для описания
+            let canvas = createCanvas(windowWidth, windowHeight * 0.7); // Подняли круг выше на 20%
             canvas.parent('canvasContainer');
             startTime = millis();
             document.getElementById('description').innerText = practice.description;
         }
 
         function draw() {
-            background(255);
+            background(240, 248, 255); // Приятный светло-голубой фон
             let currentTime = (millis() - startTime) / 1000;
             let phaseTime = currentTime % totalDuration;
             let elapsed = 0;
@@ -87,14 +101,14 @@
 
             let radius = map(intensity, 0, 1, 30, 100);
 
-            draw3DCircle(width / 2, height / 2, radius);
+            draw3DCircle(width / 2, height / 2 - 50, radius); // Подняли круг выше
 
             let targetTextSize = map(radius, 30, 100, 12, 24);
             currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
             textSize(currentTextSize);
             fill(50); // Темно-серый цвет текста
             textAlign(CENTER, CENTER);
-            text(currentPhase.name, width / 2, height / 2);
+            text(currentPhase.name, width / 2, height / 2 - 50);
         }
 
         function draw3DCircle(x, y, radius) {
@@ -108,6 +122,10 @@
                 fill(red(currentColor), green(currentColor), blue(currentColor), alpha);
                 ellipse(x, y, r * 2, r * 2);
             }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
         }
     </script>
 </body>
