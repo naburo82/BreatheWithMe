@@ -208,11 +208,11 @@
                 elapsed += phase.duration;
             }
 
-            let radius = map(intensity, 0, 1, 36, 120); // Увеличен на 20%
+            let radius = map(intensity, 0, 1, 45, 130); // Увеличен на 20%
 
             draw3DCircle(width / 2, height / 2 - 50, radius);
 
-            let targetTextSize = map(radius, 36, 120, 13, 25);
+            let targetTextSize = map(radius, 45, 130, 13, 25);
             currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
             textSize(currentTextSize);
             fill(255); // Белый цвет текста
