@@ -10,18 +10,8 @@
             text-align: center; 
             margin: 0;
             padding: 20px;
-            color: #444; /* Средне-серый цвет текста */
-            background-color: #f0f0f0; /* Светлый фон для контраста */
-        }
-        button { 
-            margin: 10px; 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
+            color: #444;
+            background-color: #f0f0f0;
         }
         #generalDescription {
             margin: 20px;
@@ -30,6 +20,37 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            text-align: left;
+            max-width: 400px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .card h2 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+        .card p {
+            font-size: 16px;
+            color: #666;
+        }
+        .card button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            display: block;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -37,83 +58,116 @@
     <div id="generalDescription">
         Практики дыхания помогают улучшить концентрацию, снизить стресс и укрепить здоровье. Выберите подходящую практику, чтобы начать.
     </div>
-    <div id="buttonsContainer"></div>
+    <div id="cardsContainer"></div>
 
     <script>
         const practices = {
             "4-7-8": {
                 name: "4-7-8",
-                description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд."
+                description: "Эта практика помогает расслабиться и улучшить качество сна.",
+                details: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд."
             },
             "Box Breathing": {
                 name: "Коробочное дыхание",
-                description: "Вдох, задержка, выдох, задержка по 4 секунды."
+                description: "Используется для улучшения концентрации и снижения стресса.",
+                details: "Вдох, задержка, выдох, задержка по 4 секунды."
             },
             "Alternate Nostril": {
                 name: "Альтернативное ноздревое дыхание",
-                description: "Вдох через левую ноздрю, выдох через правую, затем наоборот."
+                description: "Помогает сбалансировать энергию и улучшить дыхание.",
+                details: "Вдох через левую ноздрю, выдох через правую, затем наоборот."
             },
             "Kapalabhati": {
                 name: "Капалабхати",
-                description: "Быстрый вдох и выдох через нос, фокус на выдохе."
+                description: "Улучшает работу легких и очищает дыхательные пути.",
+                details: "Быстрый вдох и выдох через нос, фокус на выдохе."
             },
             "Bhramari": {
                 name: "Бхрамари",
-                description: "Вдох, затем выдох с мягким гудящим звуком."
+                description: "Снижает уровень стресса и улучшает концентрацию.",
+                details: "Вдох, затем выдох с мягким гудящим звуком."
             },
             "Ujjayi": {
                 name: "Уджайи",
-                description: "Вдох и выдох через нос с легким шипящим звуком."
+                description: "Успокаивает ум и улучшает концентрацию.",
+                details: "Вдох и выдох через нос с легким шипящим звуком."
             },
             "Diaphragmatic": {
                 name: "Диафрагмальное дыхание",
-                description: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот."
+                description: "Улучшает дыхание и снижает стресс.",
+                details: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот."
             },
             "Buteyko": {
                 name: "Бутико",
-                description: "Вдох и выдох через нос, затем задержка дыхания."
+                description: "Помогает улучшить дыхание и снизить тревожность.",
+                details: "Вдох и выдох через нос, затем задержка дыхания."
             },
             "Wim Hof": {
                 name: "Вим Хоф",
-                description: "Глубокий вдох и выдох, затем задержка дыхания."
+                description: "Укрепляет иммунную систему и улучшает выносливость.",
+                details: "Глубокий вдох и выдох, затем задержка дыхания."
             },
             "Resonant": {
                 name: "Резонансное дыхание",
-                description: "Вдох и выдох на 5.5 секунд каждый."
+                description: "Снижает стресс и улучшает сердечно-сосудистую функцию.",
+                details: "Вдох и выдох на 5.5 секунд каждый."
             },
             "Coherent Breathing": {
                 name: "Когерентное дыхание",
-                description: "Вдох и выдох на 6 секунд каждый."
+                description: "Улучшает когнитивные функции и снижает стресс.",
+                details: "Вдох и выдох на 6 секунд каждый."
             },
             "Pursed Lip Breathing": {
                 name: "Дыхание с поджатыми губами",
-                description: "Вдох через нос, выдох через сжатые губы."
+                description: "Улучшает дыхание и снижает одышку.",
+                details: "Вдох через нос, выдох через сжатые губы."
             },
             "Deep Breathing": {
                 name: "Глубокое дыхание",
-                description: "Глубокий вдох через нос, задержка, медленный выдох."
+                description: "Улучшает дыхание и снижает стресс.",
+                details: "Глубокий вдох через нос, задержка, медленный выдох."
             },
             "Lion's Breath": {
                 name: "Дыхание льва",
-                description: "Вдох через нос, выдох с открытым ртом и высунутым языком."
+                description: "Снижает напряжение и улучшает настроение.",
+                details: "Вдох через нос, выдох с открытым ртом и высунутым языком."
             },
             "Sitali": {
                 name: "Ситали",
-                description: "Вдох через свернутый язык, выдох через нос."
+                description: "Охлаждает тело и успокаивает ум.",
+                details: "Вдох через свернутый язык, выдох через нос."
             },
             "Sama Vritti": {
                 name: "Сама Вритти",
-                description: "Вдох и выдох на равные промежутки времени."
+                description: "Уравновешивает дыхание и снижает стресс.",
+                details: "Вдох и выдох на равные промежутки времени."
             }
         };
 
-        function createButtons() {
-            const buttonsContainer = document.getElementById('buttonsContainer');
+        function createCards() {
+            const cardsContainer = document.getElementById('cardsContainer');
             for (let practice in practices) {
+                let card = document.createElement('div');
+                card.className = 'card';
+
+                let title = document.createElement('h2');
+                title.innerText = practices[practice].name;
+                card.appendChild(title);
+
+                let description = document.createElement('p');
+                description.innerText = practices[practice].description;
+                card.appendChild(description);
+
+                let details = document.createElement('p');
+                details.innerText = practices[practice].details;
+                card.appendChild(details);
+
                 let button = document.createElement('button');
-                button.innerText = practices[practice].name;
+                button.innerText = 'Выбрать';
                 button.onclick = () => selectPractice(practice);
-                buttonsContainer.appendChild(button);
+                card.appendChild(button);
+
+                cardsContainer.appendChild(card);
             }
         }
 
@@ -121,7 +175,7 @@
             window.location.href = `https://naburo82.github.io/BreatheWithMe.io/visualization.html?practice=${encodeURIComponent(practice)}`;
         }
 
-        createButtons();
+        createCards();
     </script>
 </body>
 </html>
