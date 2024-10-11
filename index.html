@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор Практики Дыхания</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0;
+            padding: 20px;
+            color: #444; /* Средне-серый цвет текста */
+            background-color: #f0f0f0; /* Светлый фон для контраста */
+        }
+        button { 
+            margin: 10px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        #generalDescription {
+            margin: 20px;
+            font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Выберите практику дыхания</h1>
+    <div id="generalDescription">
+        Практики дыхания помогают улучшить концентрацию, снизить стресс и укрепить здоровье. Выберите подходящую практику, чтобы начать.
+    </div>
+    <div id="buttonsContainer"></div>
+
+    <script>
+        const practices = {
+            "4-7-8": {
+                name: "4-7-8",
+                description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд."
+            },
+            "Box Breathing": {
+                name: "Коробочное дыхание",
+                description: "Вдох, задержка, выдох, задержка по 4 секунды."
+            },
+            // Добавьте другие практики здесь...
+        };
+
+        function createButtons() {
+            const buttonsContainer = document.getElementById('buttonsContainer');
+            for (let practice in practices) {
+                let button = document.createElement('button');
+                button.innerText = practices[practice].name;
+                button.onclick = () => selectPractice(practice);
+                buttonsContainer.appendChild(button);
+            }
+        }
+
+        function selectPractice(practice) {
+            window.location.href = `https://naburo82.github.io/BreatheWithMe.io/visualization.html?practice=${encodeURIComponent(practice)}`;
+        }
+
+        createButtons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визуализация Практики Дыхания</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body { 
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: #444; /* Средне-серый цвет текста */
+            background-color: #f0f0f0; /* Светлый фон для контраста */
+        }
+        #description {
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="description"></div>
+    <div id="canvasContainer"></div>
+
+    <script>
+        const practices = {
+            "4-7-8": {
+                description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Задержка', duration: 7, startIntensity: 1, endIntensity: 1 },
+                    { name: 'Выдох', duration: 8, startIntensity: 1, endIntensity: 0 }
+                ]
+            },
+            "Box Breathing": {
+                description: "Вдох, задержка, выдох, задержка по 4 секунды.",
+                phases: [
+                    { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
+                    { name: 'Задержка', duration: 4, startIntensity: 1, endIntensity: 1 },
+                    { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 },
+                    { name: 'Задержка', duration: 4, startIntensity: 0, endIntensity: 0 }
+                ]
+            },
+            // Добавьте другие практики здесь...
+        };
+
+        function getPracticeFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('practice');
+        }
+
+        const practiceName = getPracticeFromUrl();
+        const practice = practices[practiceName] || practices["4-7-8"]; // Используем 4-7-8 по умолчанию
+
+        let phases = practice.phases;
+        let totalDuration = phases.reduce((sum, phase) => sum + phase.duration, 0);
+        let startTime;
+        let currentTextSize = 12;
+
+        function setup() {
+            let canvas = createCanvas(windowWidth, windowHeight - 60); // Уменьшаем высоту для описания
+            canvas.parent('canvasContainer');
+            startTime = millis();
+            document.getElementById('description').innerText = practice.description;
+        }
+
+        function draw() {
+            background(255);
+            let currentTime = (millis() - startTime) / 1000;
+            let phaseTime = currentTime % totalDuration;
+            let elapsed = 0;
+            let currentPhase;
+            let intensity = 0;
+
+            for (let phase of phases) {
+                if (phaseTime < elapsed + phase.duration) {
+                    currentPhase = phase;
+                    let phaseProgress = (phaseTime - elapsed) / phase.duration;
+                    intensity = lerp(phase.startIntensity, phase.endIntensity, phaseProgress);
+                    break;
+                }
+                elapsed += phase.duration;
+            }
+
+            let radius = map(intensity, 0, 1, 30, 100);
+
+            draw3DCircle(width / 2, height / 2, radius);
+
+            let targetTextSize = map(radius, 30, 100, 12, 24);
+            currentTextSize = lerp(currentTextSize, targetTextSize, 0.05);
+            textSize(currentTextSize);
+            fill(50); // Темно-серый цвет текста
+            textAlign(CENTER, CENTER);
+            text(currentPhase.name, width / 2, height / 2);
+        }
+
+        function draw3DCircle(x, y, radius) {
+            noStroke();
+            let startColor = color(173, 216, 230);
+            let endColor = color(144, 238, 144);
+
+            for (let r = radius + 30; r > 0; r -= 0.5) {
+                let currentColor = lerpColor(startColor, endColor, r / (radius + 30));
+                let alpha = map(r, radius, radius + 30, 0, 255);
+                fill(red(currentColor), green(currentColor), blue(currentColor), alpha);
+                ellipse(x, y, r * 2, r * 2);
+            }
+        }
+    </script>
+</body>
+</html>
