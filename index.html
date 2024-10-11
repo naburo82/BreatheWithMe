@@ -10,8 +10,7 @@
             text-align: center; 
             margin: 0;
             padding: 20px;
-            color: #444; /* Средне-серый цвет текста */
-            background-color: #f0f0f0; /* Светлый фон для контраста */
+            color: #333; /* Темно-серый цвет текста */
         }
         button { 
             margin: 10px; 
@@ -23,20 +22,10 @@
             background-color: #4CAF50;
             color: white;
         }
-        #generalDescription {
-            margin: 20px;
-            font-size: 18px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
     </style>
 </head>
 <body>
     <h1>Выберите практику дыхания</h1>
-    <div id="generalDescription">
-        Практики дыхания помогают улучшить концентрацию, снизить стресс и укрепить здоровье. Выберите подходящую практику, чтобы начать.
-    </div>
     <div id="buttonsContainer"></div>
 
     <script>
@@ -63,7 +52,8 @@
         }
 
         function selectPractice(practice) {
-            window.location.href = `https://naburo82.github.io/BreatheWithMe.io/visualization.html=${encodeURIComponent(practice)}`;
+            // Переход на страницу визуализации с параметром
+            window.location.href = `visualization.html?practice=${encodeURIComponent(practice)}`;
         }
 
         createButtons();
