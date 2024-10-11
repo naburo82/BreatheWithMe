@@ -22,15 +22,10 @@
             background-color: #4CAF50;
             color: white;
         }
-        #description {
-            margin: 20px;
-            font-size: 18px;
-        }
     </style>
 </head>
 <body>
     <h1>Выберите практику дыхания</h1>
-    <div id="description"></div>
     <div id="buttonsContainer"></div>
 
     <script>
@@ -57,10 +52,8 @@
         }
 
         function selectPractice(practice) {
-            const descriptionDiv = document.getElementById('description');
-            descriptionDiv.innerText = practices[practice].description;
             // Переход на страницу визуализации с параметром
-            window.location.href = `https://naburo82.github.io/BreatheWithMe.io/visualization.html?practice=${encodeURIComponent(practice)}`;
+            window.location.href = `visualization.html?practice=${encodeURIComponent(practice)}`;
         }
 
         createButtons();
