@@ -11,7 +11,7 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
             color: #444;
-            background-color: #e0f7fa; /* Однородный светло-голубой фон */
+            background-color: #e0f7fa;
         }
         #title {
             text-align: center;
@@ -31,20 +31,26 @@
         }
         #canvasContainer {
             position: relative;
-            height: 70vh; /* Высота контейнера для холста */
+            height: 70vh;
         }
         #backButton {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 16px;
             cursor: pointer;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             background-color: #4CAF50;
             color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #backButton:hover {
+            background-color: #45a049;
+            transform: translateX(-50%) scale(1.05);
         }
     </style>
 </head>
