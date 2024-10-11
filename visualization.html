@@ -11,17 +11,27 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
             color: #444;
-            background-color: #e0f7fa;
+            background-color: #e0f7fa; /* Однородный светло-голубой фон */
+        }
+        #title {
+            text-align: center;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
         #description {
             text-align: center;
-            margin: 20px;
+            margin: 10px;
             font-size: 18px;
         }
         #timer {
             text-align: center;
             font-size: 20px;
             margin-bottom: 10px;
+        }
+        #canvasContainer {
+            position: relative;
+            height: 70vh; /* Высота контейнера для холста */
         }
         #backButton {
             position: absolute;
@@ -39,6 +49,7 @@
     </style>
 </head>
 <body>
+    <div id="title"></div>
     <div id="description"></div>
     <div id="timer">00:00</div>
     <div id="canvasContainer"></div>
@@ -47,6 +58,7 @@
     <script>
         const practices = {
             "4-7-8": {
+                name: "4-7-8",
                 description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -55,6 +67,7 @@
                 ]
             },
             "Box Breathing": {
+                name: "Коробочное дыхание",
                 description: "Вдох, задержка, выдох, задержка по 4 секунды.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -64,6 +77,7 @@
                 ]
             },
             "Alternate Nostril": {
+                name: "Альтернативное ноздревое дыхание",
                 description: "Вдох через левую ноздрю, выдох через правую, затем наоборот.",
                 phases: [
                     { name: 'Вдох через левую', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -73,6 +87,7 @@
                 ]
             },
             "Kapalabhati": {
+                name: "Капалабхати",
                 description: "Быстрый вдох и выдох через нос, фокус на выдохе.",
                 phases: [
                     { name: 'Вдох', duration: 1, startIntensity: 0, endIntensity: 1 },
@@ -80,6 +95,7 @@
                 ]
             },
             "Bhramari": {
+                name: "Бхрамари",
                 description: "Вдох, затем выдох с мягким гудящим звуком.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -87,6 +103,7 @@
                 ]
             },
             "Ujjayi": {
+                name: "Уджайи",
                 description: "Вдох и выдох через нос с легким шипящим звуком.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -95,6 +112,7 @@
                 ]
             },
             "Diaphragmatic": {
+                name: "Диафрагмальное дыхание",
                 description: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот.",
                 phases: [
                     { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
@@ -102,6 +120,7 @@
                 ]
             },
             "Buteyko": {
+                name: "Бутико",
                 description: "Вдох и выдох через нос, затем задержка дыхания.",
                 phases: [
                     { name: 'Вдох', duration: 3, startIntensity: 0, endIntensity: 1 },
@@ -110,6 +129,7 @@
                 ]
             },
             "Wim Hof": {
+                name: "Вим Хоф",
                 description: "Глубокий вдох и выдох, затем задержка дыхания.",
                 phases: [
                     { name: 'Вдох', duration: 2, startIntensity: 0, endIntensity: 1 },
@@ -118,6 +138,7 @@
                 ]
             },
             "Resonant": {
+                name: "Резонансное дыхание",
                 description: "Вдох и выдох на 5.5 секунд каждый.",
                 phases: [
                     { name: 'Вдох', duration: 5.5, startIntensity: 0, endIntensity: 1 },
@@ -125,6 +146,7 @@
                 ]
             },
             "Coherent Breathing": {
+                name: "Когерентное дыхание",
                 description: "Вдох и выдох на 6 секунд каждый.",
                 phases: [
                     { name: 'Вдох', duration: 6, startIntensity: 0, endIntensity: 1 },
@@ -132,6 +154,7 @@
                 ]
             },
             "Pursed Lip Breathing": {
+                name: "Дыхание с поджатыми губами",
                 description: "Вдох через нос, выдох через сжатые губы.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -139,6 +162,7 @@
                 ]
             },
             "Deep Breathing": {
+                name: "Глубокое дыхание",
                 description: "Глубокий вдох через нос, задержка, медленный выдох.",
                 phases: [
                     { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
@@ -146,6 +170,7 @@
                 ]
             },
             "Lion's Breath": {
+                name: "Дыхание льва",
                 description: "Вдох через нос, выдох с открытым ртом и высунутым языком.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -153,6 +178,7 @@
                 ]
             },
             "Sitali": {
+                name: "Ситали",
                 description: "Вдох через свернутый язык, выдох через нос.",
                 phases: [
                     { name: 'Вдох через язык', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -160,6 +186,7 @@
                 ]
             },
             "Sama Vritti": {
+                name: "Сама Вритти",
                 description: "Вдох и выдох на равные промежутки времени.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
@@ -186,6 +213,7 @@
             let canvas = createCanvas(windowWidth, windowHeight * 0.7);
             canvas.parent('canvasContainer');
             startTime = millis();
+            document.getElementById('title').innerText = practice.name;
             document.getElementById('description').innerText = practice.description;
             startTimer();
         }
