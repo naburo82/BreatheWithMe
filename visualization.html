@@ -49,6 +49,7 @@
         const practices = {
             "4-7-8": {
                 description: "Вдох на 4 секунды, задержка на 7 секунд, выдох на 8 секунд.",
+                details: "Эта практика помогает расслабиться и улучшить качество сна.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Задержка', duration: 7, startIntensity: 1, endIntensity: 1 },
@@ -57,6 +58,7 @@
             },
             "Box Breathing": {
                 description: "Вдох, задержка, выдох, задержка по 4 секунды.",
+                details: "Используется для улучшения концентрации и снижения стресса.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Задержка', duration: 4, startIntensity: 1, endIntensity: 1 },
@@ -66,6 +68,7 @@
             },
             "Alternate Nostril": {
                 description: "Вдох через левую ноздрю, выдох через правую, затем наоборот.",
+                details: "Помогает сбалансировать энергию и улучшить дыхание.",
                 phases: [
                     { name: 'Вдох через левую', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох через правую', duration: 4, startIntensity: 1, endIntensity: 0 },
@@ -75,6 +78,7 @@
             },
             "Kapalabhati": {
                 description: "Быстрый вдох и выдох через нос, фокус на выдохе.",
+                details: "Улучшает работу легких и очищает дыхательные пути.",
                 phases: [
                     { name: 'Вдох', duration: 1, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 1, startIntensity: 1, endIntensity: 0 }
@@ -82,6 +86,7 @@
             },
             "Bhramari": {
                 description: "Вдох, затем выдох с мягким гудящим звуком.",
+                details: "Снижает уровень стресса и улучшает концентрацию.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох с гудением', duration: 8, startIntensity: 1, endIntensity: 0 }
@@ -89,6 +94,7 @@
             },
             "Ujjayi": {
                 description: "Вдох и выдох через нос с легким шипящим звуком.",
+                details: "Успокаивает ум и улучшает концентрацию.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Задержка', duration: 2, startIntensity: 1, endIntensity: 1 },
@@ -97,6 +103,7 @@
             },
             "Diaphragmatic": {
                 description: "Вдохните глубоко, расширяя живот, затем выдохните, втягивая живот.",
+                details: "Улучшает дыхание и снижает стресс.",
                 phases: [
                     { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
@@ -104,6 +111,7 @@
             },
             "Buteyko": {
                 description: "Вдох и выдох через нос, затем задержка дыхания.",
+                details: "Помогает улучшить дыхание и снизить тревожность.",
                 phases: [
                     { name: 'Вдох', duration: 3, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 3, startIntensity: 1, endIntensity: 0 },
@@ -112,6 +120,7 @@
             },
             "Wim Hof": {
                 description: "Глубокий вдох и выдох, затем задержка дыхания.",
+                details: "Укрепляет иммунную систему и улучшает выносливость.",
                 phases: [
                     { name: 'Вдох', duration: 2, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 2, startIntensity: 1, endIntensity: 0 },
@@ -120,6 +129,7 @@
             },
             "Resonant": {
                 description: "Вдох и выдох на 5.5 секунд каждый.",
+                details: "Снижает стресс и улучшает сердечно-сосудистую функцию.",
                 phases: [
                     { name: 'Вдох', duration: 5.5, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 5.5, startIntensity: 1, endIntensity: 0 }
@@ -127,6 +137,7 @@
             },
             "Coherent Breathing": {
                 description: "Вдох и выдох на 6 секунд каждый.",
+                details: "Улучшает когнитивные функции и снижает стресс.",
                 phases: [
                     { name: 'Вдох', duration: 6, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 6, startIntensity: 1, endIntensity: 0 }
@@ -134,6 +145,7 @@
             },
             "Pursed Lip Breathing": {
                 description: "Вдох через нос, выдох через сжатые губы.",
+                details: "Улучшает дыхание и снижает одышку.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох через губы', duration: 6, startIntensity: 1, endIntensity: 0 }
@@ -141,6 +153,7 @@
             },
             "Deep Breathing": {
                 description: "Глубокий вдох через нос, задержка, медленный выдох.",
+                details: "Улучшает дыхание и снижает стресс.",
                 phases: [
                     { name: 'Вдох', duration: 5, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 5, startIntensity: 1, endIntensity: 0 }
@@ -148,6 +161,7 @@
             },
             "Lion's Breath": {
                 description: "Вдох через нос, выдох с открытым ртом и высунутым языком.",
+                details: "Снижает напряжение и улучшает настроение.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох с рычанием', duration: 6, startIntensity: 1, endIntensity: 0 }
@@ -155,6 +169,7 @@
             },
             "Sitali": {
                 description: "Вдох через свернутый язык, выдох через нос.",
+                details: "Охлаждает тело и успокаивает ум.",
                 phases: [
                     { name: 'Вдох через язык', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох через нос', duration: 4, startIntensity: 1, endIntensity: 0 }
@@ -162,6 +177,7 @@
             },
             "Sama Vritti": {
                 description: "Вдох и выдох на равные промежутки времени.",
+                details: "Уравновешивает дыхание и снижает стресс.",
                 phases: [
                     { name: 'Вдох', duration: 4, startIntensity: 0, endIntensity: 1 },
                     { name: 'Выдох', duration: 4, startIntensity: 1, endIntensity: 0 }
@@ -187,7 +203,7 @@
             let canvas = createCanvas(windowWidth, windowHeight * 0.7); // Подняли круг выше на 20%
             canvas.parent('canvasContainer');
             startTime = millis();
-            document.getElementById('description').innerText = practice.description;
+            document.getElementById('description').innerText = `${practice.description} ${practice.details}`;
             startTimer();
         }
 
